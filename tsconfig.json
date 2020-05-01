@@ -11,8 +11,15 @@
     "noImplicitThis": false,
     /* Module Resolution Options */
     "moduleResolution": "node",
-    "baseUrl": "./",
+    "baseUrl": "src",
     "esModuleInterop": true,
+    "paths": {
+      "pages/*": ["pages/*"],
+      "components/*": ["components/*"],
+      "actions/*": ["actions/*"],
+      "reducers/*": ["reducers/*"],
+      "utils/*": ["utils/*"],
+    }
   },
   "exclude": [
     "**/*.test.*",

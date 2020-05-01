@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 
 const Home: FunctionComponent = () => {
-  return <div>SweetHomePage</div>;
+  return <div>HomePage</div>;
 };
 
 export default Home;

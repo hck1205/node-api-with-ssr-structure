@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
-import { Home } from './Home';
-import { News } from './News';
-import { Header, Footer } from '../components';
+import { Header, Footer } from 'components'
+import { Home, News } from 'pages'
 
 class App extends Component {
   render() {

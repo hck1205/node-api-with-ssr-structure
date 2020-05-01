@@ -1,14 +1,30 @@
+import { hydrate } from 'react-dom';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+import { loadableReady } from '@loadable/component';
+import { Provider } from 'react-redux';
 
-import App from './pages/App';
+// import configureStore from './store';
+// import GlobalStyle from './styles/GlobalStyle';
+import App from './App';
 
-const rootElement = document.getElementById('root');
+// const store = configureStore();
 
-ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
-  rootElement
-);
+loadableReady(() => {
+  const rootElement = document.getElementById('root');
+  hydrate(
+    // <Provider store={store}>
+      <BrowserRouter>
+        <>
+          {/* <GlobalStyle /> */}
+          <App />
+        </>
+      </BrowserRouter>,
+    // </Provider>,
+    rootElement,
+  );
+});
+
+if (module.hot) {
+  module.hot.accept();
+}

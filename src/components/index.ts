@@ -1,3 +1,4 @@
-export { Header } from './Header';
+import loadable from '@loadable/component';
 
-export { Footer } from './Footer';
+export const Header = loadable(() => import(/* webpackChunkName: "Header" */ './Header'));
+export const Footer = loadable(() => import(/* webpackChunkName: "Footer" */ './Footer'));
