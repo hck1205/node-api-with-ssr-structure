@@ -16,16 +16,13 @@
     "paths": {
       "pages/*": ["pages/*"],
       "components/*": ["components/*"],
-      "actions/*": ["actions/*"],
-      "reducers/*": ["reducers/*"],
-      "utils/*": ["utils/*"],
-    }
+      "store/*": ["store/*"],
+      "actions/*": ["store/actions/*"],
+      "reducers/*": ["store/reducers/*"],
+      "utils/*": ["utils/*"]
+    },
+    "typeRoots": ["types", "../node_modules/@types", "../node_modules/moment/"]
   },
-  "exclude": [
-    "**/*.test.*",
-    "**/*.spec.*",
-    "node_modules",
-    "dist",
-    "public"
-  ]
+  "include": ["**/*"],
+  "exclude": ["../node_modules", "../dist", "../public"]
 }
