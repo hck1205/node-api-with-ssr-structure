@@ -14,15 +14,40 @@
     "baseUrl": "src",
     "esModuleInterop": true,
     "paths": {
-      "pages/*": ["pages/*"],
-      "components/*": ["components/*"],
-      "store/*": ["store/*"],
-      "actions/*": ["store/actions/*"],
-      "reducers/*": ["store/reducers/*"],
-      "utils/*": ["utils/*"]
+      "pages/*": [
+        "pages/*"
+      ],
+      "components/*": [
+        "components/*"
+      ],
+      "store/*": [
+        "store/*"
+      ],
+      "actions/*": [
+        "store/actions/*"
+      ],
+      "reducers/*": [
+        "store/reducers/*"
+      ],
+      "utils/*": [
+        "utils/*"
+      ],
+      "lib/*": [
+        "lib/*"
+      ]
     },
-    "typeRoots": ["types", "../node_modules/@types", "../node_modules/moment/"]
+    "typeRoots": [
+      "types",
+      "../node_modules/@types",
+      "../node_modules/moment/"
+    ]
   },
-  "include": ["**/*"],
-  "exclude": ["../node_modules", "../dist", "../public"]
+  "include": [
+    "**/*"
+  ],
+  "exclude": [
+    "../node_modules",
+    "../dist",
+    "../public"
+  ]
 }
