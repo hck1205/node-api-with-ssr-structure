@@ -1,7 +1,7 @@
 import React from "react";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
-import { increase, decrease } from "actions/counterActions";
+import { increase, decrease } from "actions";
 
 function Home() {
   const number = useSelector((state: any) => state.counterReducer);

@@ -3,7 +3,9 @@
     /* Basic Options */
     "target": "esnext",
     "module": "esnext",
+    "types": ["react", "node"],
     "jsx": "preserve",
+    "lib": ["es2015", "es2016", "es2017", "es2018", "es2019", "es2020", "dom"],
     /* Strict Type-Checking Options */
     "strict": true,
     "noImplicitAny": true,
@@ -14,40 +16,20 @@
     "baseUrl": "src",
     "esModuleInterop": true,
     "paths": {
-      "pages/*": [
-        "pages/*"
-      ],
-      "components/*": [
-        "components/*"
-      ],
-      "store/*": [
-        "store/*"
-      ],
-      "actions/*": [
-        "store/actions/*"
-      ],
-      "reducers/*": [
-        "store/reducers/*"
-      ],
-      "utils/*": [
-        "utils/*"
-      ],
-      "lib/*": [
-        "lib/*"
-      ]
+      "pages": ["./client/pages"],
+      "components": ["./client/components"],
+      "store": ["./client/store"],
+      "actions": ["./client/store/actions"],
+      "reducers": ["./client/store/reducers"],
+      "utils": ["/client/utils"],
+      "lib": ["./client/lib"]
     },
     "typeRoots": [
-      "types",
-      "../node_modules/@types",
-      "../node_modules/moment/"
+      "./src/client/types",
+      "node_modules/@types",
+      "node_modules/moment/"
     ]
   },
-  "include": [
-    "**/*"
-  ],
-  "exclude": [
-    "../node_modules",
-    "../dist",
-    "../public"
-  ]
+  "include": ["**/*"],
+  "exclude": ["node_modules", "dist", "public"]
 }

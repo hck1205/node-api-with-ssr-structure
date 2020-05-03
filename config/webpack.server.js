@@ -1,5 +1,6 @@
 const path = require("path");
 const nodeExternals = require("webpack-node-externals");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   mode: process.env.NODE_ENV === "production" ? "production" : "development",
@@ -9,7 +10,7 @@ module.exports = {
   node: false, // it enables '__dirname' in files. If is not, '__dirname' always return '/'.
 
   entry: {
-    server: path.resolve(__dirname, "..", "src/server.tsx"),
+    server: path.resolve(__dirname, "..", "src/server/index.tsx"),
   },
 
   output: {
@@ -23,6 +24,10 @@ module.exports = {
       {
         test: /\.tsx?$/,
         use: ["babel-loader", "ts-loader"],
+      },
+      {
+        test: /\.(scss|css)$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
     ],
   },

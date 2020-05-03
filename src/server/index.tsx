@@ -8,17 +8,17 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 import { ChunkExtractor } from "@loadable/server";
 
-import reducers from "./store/reducers";
+import reducers from "../client/store/reducers";
 
 const app = express();
 
 if (process.env.NODE_ENV !== "production") {
   const webpack = require("webpack");
-  const webpackConfig = require("../config/webpack.client.js").map(
+  const webpackConfig = require("../../config/webpack.client.js").map(
     (config: any) => {
       config.output.path = config.output.path.replace(
-        "../dist/dist/",
-        "../dist/"
+        "../../dist/dist/",
+        "../../dist/"
       );
       return config;
     }

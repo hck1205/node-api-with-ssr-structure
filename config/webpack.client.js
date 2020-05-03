@@ -1,23 +1,26 @@
-const path = require('path');
-const webpack = require('webpack');
-const nodeExternals = require('webpack-node-externals');
-const LoadablePlugin = require('@loadable/webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const createStyledComponentsTransformer = require('typescript-plugin-styled-components').default;
+const path = require("path");
+const webpack = require("webpack");
+const nodeExternals = require("webpack-node-externals");
+const LoadablePlugin = require("@loadable/webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const createStyledComponentsTransformer = require("typescript-plugin-styled-components")
+  .default;
 
-const devMode = process.env.NODE_ENV !== 'production';
+const devMode = process.env.NODE_ENV !== "production";
 const styledComponentsTransformer = createStyledComponentsTransformer();
 const hotMiddlewareScript = `webpack-hot-middleware/client?name=web&path=/__webpack_hmr&timeout=20000&reload=true`;
 
 const getEntryPoint = (target) => {
-  if (target === 'node') {
-    return ['./src/App.tsx'];
+  if (target === "node") {
+    return ["./src/client/App.tsx"];
   }
-  return devMode ? [hotMiddlewareScript, './src/index.tsx'] : ['./src/index.tsx'];
+  return devMode
+    ? [hotMiddlewareScript, "./src/client/index.tsx"]
+    : ["./src/client/index.tsx"];
 };
 
 const getConfig = (target) => ({
-  mode: devMode ? 'development' : 'production',
+  mode: devMode ? "development" : "production",
 
   name: target,
 
@@ -27,9 +30,9 @@ const getConfig = (target) => ({
 
   output: {
     path: path.resolve(__dirname, `../dist/${target}`),
-    filename: '[name].js',
-    publicPath: '/web/',
-    libraryTarget: target === 'node' ? 'commonjs2' : undefined,
+    filename: "[name].js",
+    publicPath: "/web/",
+    libraryTarget: target === "node" ? "commonjs2" : undefined,
   },
 
   module: {
@@ -37,9 +40,9 @@ const getConfig = (target) => ({
       {
         test: /\.tsx?$/,
         use: [
-          'babel-loader',
+          "babel-loader",
           {
-            loader: 'ts-loader',
+            loader: "ts-loader",
             options: {
               getCustomTransformers: () => ({
                 before: [styledComponentsTransformer],
@@ -50,29 +53,37 @@ const getConfig = (target) => ({
       },
       {
         test: /\.(scss|css)$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
     ],
   },
 
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    modules: ["node_modules"],
+    extensions: [".js", ".jsx", ".ts", ".tsx"],
     alias: {
-      pages: path.resolve('src/pages/'),
-      components: path.resolve('src/components/'),
-      actions: path.resolve('src/store/actions/'),
-      reducers: path.resolve('src/store/reducers/'),
-      utils: path.resolve('src/utils/'),
-      lib: path.resolve('src/lib/'),
+      pages: path.resolve("src/client/pages/"),
+      components: path.resolve("src/client/components/"),
+      actions: path.resolve("src/client/store/actions/"),
+      reducers: path.resolve("src/client/store/reducers/"),
+      utils: path.resolve("src/client/utils/"),
+      lib: path.resolve("src/client/lib/"),
+      moment$: "moment/moment.js",
     },
   },
 
   plugins:
-    target === 'web'
-      ? [new LoadablePlugin(), new MiniCssExtractPlugin(), new webpack.HotModuleReplacementPlugin()]
+    target === "web"
+      ? [
+          new LoadablePlugin(),
+          new MiniCssExtractPlugin(),
+          new webpack.HotModuleReplacementPlugin(),
+          // new webpack.IgnorePlugin(/\.\/locale$/),
+        ]
       : [new LoadablePlugin(), new MiniCssExtractPlugin()],
 
-  externals: target === 'node' ? ['@loadable/component', nodeExternals()] : undefined,
+  externals:
+    target === "node" ? ["@loadable/component", nodeExternals()] : undefined,
 });
 
-module.exports = [getConfig('web'), getConfig('node')];
+module.exports = [getConfig("web"), getConfig("node")];

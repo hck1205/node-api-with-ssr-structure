@@ -1,13 +1,13 @@
-import { Home, News } from 'pages';
+import { Home, News } from "pages";
 
 const routes = [
   {
-    path: ['/'],
+    path: ["/"],
     page: Home,
     exact: true,
   },
   {
-    path: ['/news'],
+    path: ["/news"],
     page: News,
     exact: false,
   },
